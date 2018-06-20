@@ -10,6 +10,7 @@
     "autoprefixer": "^8.6.3",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.24.4",
     "gulp": "^3.9.1",
     "gulp-postcss": "^7.0.1",
     "gulp-watch": "^5.0.0",
@@ -21,7 +22,6 @@
   },
   "scripts": {
     "webpack": "webpack",
-    "build": "babel gulpfile.babel.js --out-file gulpfile.js --presets env"
   },
   "repository": {
     "type": "git",
