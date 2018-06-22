@@ -437,8 +437,12 @@ a {
     text-decoration: none;
     padding: .75rem 1.2rem;
     display: inline-block;
-    box-shadow: 0 0 10px 1px rgba(0,0,0, 0.3);
+    transition: all 800ms ease;
 }
+
+.btn:hover {
+        box-shadow: 0 0 10px 1px rgba(0,0,0, 0.3);
+    }
 
 .btn--orange {
         background-color: #d59541;

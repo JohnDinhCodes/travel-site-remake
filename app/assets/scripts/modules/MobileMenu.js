@@ -18,7 +18,4 @@ class MobileMenu {
     }
 }
 
-export {
-    MobileMenu as
-    default
-}
+export { MobileMenu as default }
