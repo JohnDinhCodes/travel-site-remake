@@ -10,7 +10,6 @@ class StickyHeader {
         this.pageSections = document.querySelectorAll('.page-section')
         this.headerLinks = document.querySelectorAll('.primary-nav a')
         this.createPageSectionWaypoints()
-        this.smoothScrolling()
     }
 
     createHeaderWaypoint() {
