@@ -8,20 +8,20 @@ import uglify from 'gulp-uglify'
 import { create } from 'browser-sync'
 const browserSync = create()
 
-gulp.task('previewPublic', () => {
+gulp.task('previewDist', () => {
     browserSync.init({
         notify: false,
         server: {
-            baseDir: 'public'
+            baseDir: 'docs'
         }
     })
 })
 
-gulp.task('deletePublicFolder', () => {
-    return del('./public')
+gulp.task('deleteDistFolder', ['icons'], () => {
+    return del('./docs')
 })
 
-gulp.task('copyGeneralFiles', ['deletePublicFolder'], () => {
+gulp.task('copyGeneralFiles', ['deleteDistFolder'], () => {
     const pathsToCopy = [
     './app/**/*',
     '!./app/index.html',
@@ -31,26 +31,30 @@ gulp.task('copyGeneralFiles', ['deletePublicFolder'], () => {
     '!./app/temp/**'
     ]
 return gulp.src(pathsToCopy)
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest('./docs'))
 })
 
-gulp.task('optimizeImages', ['deletePublicFolder', 'icons'], () => {
+gulp.task('optimizeImages', ['deleteDistFolder'], () => {
     return gulp.src(['./app/assets/images/**/*', '!./app/assets/images/icons', '!./app/assets/images/icons/**/*', '!./app/assets/images/*-i.jpg'])
     .pipe(imagemin({
         progressive: true,
         interlaced: true,
         multipass: true
     }))
-    .pipe(gulp.dest('./public/assets/images'))
+    .pipe(gulp.dest('./dist/assets/images'))
 })
 
-gulp.task('usemin', ['deletePublicFolder', 'styles', 'scripts'], () => {
+gulp.task('useminTrigger', ['deleteDistFolder'], () => {
+    gulp.start('usemin')
+})
+
+gulp.task('usemin', ['styles', 'scripts'], () => {
     return gulp.src('./app/index.html')
     .pipe(usemin({
         css: [() => rev(), () => cssnano()],
         js: [() => rev(), () => uglify()]
     }))
-    .pipe(gulp.dest('./public'))
+    .pipe(gulp.dest('./docs'))
 })
 
-gulp.task('build', ['deletePublicFolder', 'copyGeneralFiles', 'optimizeImages', 'usemin'])
+gulp.task('build', ['deleteDistFolder', 'copyGeneralFiles', 'optimizeImages', 'useminTrigger'])
