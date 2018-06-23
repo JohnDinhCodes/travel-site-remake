@@ -5,6 +5,7 @@ import usemin from 'gulp-usemin'
 import rev from 'gulp-rev'
 import cssnano from 'gulp-cssnano'
 import uglify from 'gulp-uglify'
+
 import { create } from 'browser-sync'
 const browserSync = create()
 
@@ -41,7 +42,7 @@ gulp.task('optimizeImages', ['deleteDistFolder'], () => {
         interlaced: true,
         multipass: true
     }))
-    .pipe(gulp.dest('./dist/assets/images'))
+    .pipe(gulp.dest('./docs/assets/images'))
 })
 
 gulp.task('useminTrigger', ['deleteDistFolder'], () => {
