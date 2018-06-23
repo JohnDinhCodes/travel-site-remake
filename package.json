@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "lazysizes": "^4.0.4",
     "normalize.css": "^8.0.0",
     "smoothscroll": "^0.4.0",
     "waypoints": "^4.0.1"
